@@ -12,7 +12,21 @@ const scoreComputerNode = document.createElement("div");
 scoreComputerNode.classList.add("score-computer");
 scoreComputerNode.textContent = `Computer score is 0.`;
 
+const playerChoiceDiv = document.createElement("div");
+playerChoiceDiv.classList.add("player-choice");
+
+const computerChoiceDiv = document.createElement("div");
+computerChoiceDiv.classList.add("computer-choice");
+
+const resultsDiv = document.createElement("div");
+resultsDiv.classList.add("results");
+
+const matchResultDiv = document.createElement("div");
+matchResultDiv.classList.add("match-result-div");
+
 function beginMatch() {
+    playerScore = 0;
+    computerScore = 0;
     const weaponDiv = document.createElement("div");
     weaponDiv.classList.add("weapon");
     document.body.append(weaponDiv);
@@ -21,6 +35,12 @@ function beginMatch() {
     weaponDivText.classList.add("weapon-div-text");
     weaponDiv.append(weaponDivText);
     beginBtn.remove();
+    playerChoiceDiv.remove();
+    computerChoiceDiv.remove();
+    resultsDiv.remove();
+    matchResultDiv.remove();
+    scorePlayerNode.textContent = `Player score: ${playerScore}`;
+    scoreComputerNode.textContent = `Computer score: ${computerScore}`;
 
     const weapons = ["Rock", "Paper", "Scissors"];
 
@@ -39,13 +59,6 @@ function beginMatch() {
 }
 
 
-const playerChoiceDiv = document.createElement("div");
-playerChoiceDiv.classList.add("player-choice");
-const computerChoiceDiv = document.createElement("div");
-computerChoiceDiv.classList.add("computer-choice");
-const resultsDiv = document.createElement("div");
-resultsDiv.classList.add("results");
-
 function handleClick(e) {
     let computerChoice = getComputerChoice();
     let playerChoice = e.target.id;
@@ -54,25 +67,35 @@ function handleClick(e) {
     document.body.append(computerChoiceDiv);
     document.body.append(resultsDiv);
 
-    playerChoiceDiv.textContent = `The player chose ${playerChoice} as a weapon!`;
-    computerChoiceDiv.textContent = `The computer counters with ${computerChoice}.`;
+    playerChoiceDiv.textContent = `You chose ${playerChoice.toUpperCase()}.`;
+    computerChoiceDiv.textContent = `Computer chose ${computerChoice.toUpperCase()}.`;
     resultsDiv.textContent = playRound(playerChoice, computerChoice);
-
 }
 
 
 function updateScore() {
-    if (playerScore == 5 ) {
-        resultsDiv.textContent = "You win!";
+    if (playerScore == 2 || computerScore == 2) {
+        document.body.append(matchResultDiv);
+        const weaponDiv = document.querySelector('div.weapon');
+        weaponDiv.remove();
+
+        beginBtn = document.createElement('button');
+        beginBtn.textContent = 'Begin new match';
+        beginBtn.id = 'game-start';
+        document.body.insertBefore(beginBtn, scorePlayerNode);
+        beginBtn.addEventListener("click", beginMatch);
+    
+        if (playerScore == 2) {
+            matchResultDiv.textContent = "You win the match!";
+        }
+        else if (computerScore == 2) {
+            matchResultDiv.textContent = "Computer wins the match!"
+        }
     }
 
-    else if (computerScore == 5) {
-        resultsDiv.textContent = "Computer wins!"
-    }
     scorePlayerNode.textContent = `Player score: ${playerScore}`;
     scoreComputerNode.textContent = `Computer score: ${computerScore}`;
 }
-
 
 
 function getComputerChoice () {
