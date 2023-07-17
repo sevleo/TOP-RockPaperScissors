@@ -86,7 +86,7 @@ function updateScore() {
         beginBtn.addEventListener("click", beginMatch);
     
         if (playerScore == 2) {
-            matchResultDiv.textContent = "You win the match!";
+            matchResultDiv.textContent = "Congratulations! You win the match!";
         }
         else if (computerScore == 2) {
             matchResultDiv.textContent = "Computer wins the match!"
