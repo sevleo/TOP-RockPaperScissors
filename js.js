@@ -3,6 +3,7 @@ beginBtn.addEventListener("click", beginMatch);
 
 playerScore = 0;
 computerScore = 0;
+roundNum = 0;
 
 const scorePlayerNode = document.createElement("div");
 scorePlayerNode.classList.add("score-player");
@@ -12,21 +13,14 @@ const scoreComputerNode = document.createElement("div");
 scoreComputerNode.classList.add("score-computer");
 scoreComputerNode.textContent = `Computer score is 0.`;
 
-const playerChoiceDiv = document.createElement("div");
-playerChoiceDiv.classList.add("player-choice");
-
-const computerChoiceDiv = document.createElement("div");
-computerChoiceDiv.classList.add("computer-choice");
-
-const resultsDiv = document.createElement("div");
-resultsDiv.classList.add("results");
-
 const matchResultDiv = document.createElement("div");
 matchResultDiv.classList.add("match-result-div");
 
 function beginMatch() {
     playerScore = 0;
     computerScore = 0;
+    roundNum = 0;
+
     const weaponDiv = document.createElement("div");
     weaponDiv.classList.add("weapon");
     document.body.append(weaponDiv);
@@ -35,9 +29,10 @@ function beginMatch() {
     weaponDivText.classList.add("weapon-div-text");
     weaponDiv.append(weaponDivText);
     beginBtn.remove();
-    playerChoiceDiv.remove();
-    computerChoiceDiv.remove();
-    resultsDiv.remove();
+
+    divsDelete = document.querySelectorAll('.round');
+    divsDelete.forEach((div) => div.remove());
+
     matchResultDiv.remove();
     scorePlayerNode.textContent = `Player score: ${playerScore}`;
     scoreComputerNode.textContent = `Computer score: ${computerScore}`;
@@ -60,16 +55,35 @@ function beginMatch() {
 
 
 function handleClick(e) {
+    roundNum += 1;
     let computerChoice = getComputerChoice();
     let playerChoice = e.target.id;
 
-    document.body.append(playerChoiceDiv);    
-    document.body.append(computerChoiceDiv);
-    document.body.append(resultsDiv);
+    const roundDiv = document.createElement("div");
+    roundDiv.classList.add(`round`);
+
+    const roundTextDiv = document.createElement("div");
+    roundTextDiv.classList.add('round-text');
+    
+    const playerChoiceDiv = document.createElement("div");
+    playerChoiceDiv.classList.add("player-choice");
+
+    const computerChoiceDiv = document.createElement("div");
+    computerChoiceDiv.classList.add("computer-choice");
+
+    const resultsDiv = document.createElement("div");
+    resultsDiv.classList.add("results");
+
+    document.body.append(roundDiv);
+    roundDiv.append(roundTextDiv);
+    roundDiv.append(playerChoiceDiv);
+    roundDiv.append(computerChoiceDiv);
+    roundDiv.append(resultsDiv);
 
     playerChoiceDiv.textContent = `You chose ${playerChoice.toUpperCase()}.`;
     computerChoiceDiv.textContent = `Computer chose ${computerChoice.toUpperCase()}.`;
     resultsDiv.textContent = playRound(playerChoice, computerChoice);
+    roundTextDiv.textContent = `Round ${roundNum} results:`;
 }
 
 

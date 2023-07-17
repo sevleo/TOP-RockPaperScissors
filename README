@@ -1,0 +1,3 @@
+nodes with class player-choice, computer-choice, results -> should go as 
+children to new node "round". Each round, a new round should be created storing
+the results.
