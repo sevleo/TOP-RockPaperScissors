@@ -112,7 +112,7 @@ function handleClick(e) {
 
 
 function updateScore() {
-    if (playerScore == 2 || computerScore == 2) {
+    if (playerScore == 3 || computerScore == 3) {
         document.body.insertBefore(matchResultDiv, roundContainer);
         const weaponDiv = document.querySelector('div.weapon');
         weaponDiv.remove();
@@ -131,10 +131,10 @@ function updateScore() {
         
 
     
-        if (playerScore == 2) {
+        if (playerScore == 3) {
             matchResultDiv.textContent = "Congratulations! You win the match!";
         }
-        else if (computerScore == 2) {
+        else if (computerScore == 3) {
             matchResultDiv.textContent = "Computer wins the match!"
         }
     }
