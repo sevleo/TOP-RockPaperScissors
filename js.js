@@ -19,6 +19,8 @@ matchResultDiv.classList.add("match-result-div");
 const roundContainer = document.createElement("div");
 roundContainer.classList.add('round-container');
 
+const footer = document.querySelector('.footer');
+
 
 function beginMatch() {
     playerScore = 0;
@@ -33,7 +35,7 @@ function beginMatch() {
 
     const weaponDiv = document.createElement("div");
     weaponDiv.classList.add("weapon");
-    document.body.append(weaponDiv);
+    document.body.insertBefore(weaponDiv, footer);
     const weaponDivText = document.createElement("div");
     weaponDivText.textContent = "Choose your weapon";
     weaponDivText.classList.add("weapon-div-text");
@@ -60,10 +62,10 @@ function beginMatch() {
     })
 
 
-    document.body.append(scorePlayerNode);
+    document.body.insertBefore(scorePlayerNode, footer);
 
-    document.body.append(scoreComputerNode);
-    document.body.append(roundContainer);
+    document.body.insertBefore(scoreComputerNode, footer);
+    document.body.insertBefore(roundContainer, footer);
 }
 
 

@@ -19,7 +19,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 #game-start-btn, button {
@@ -63,6 +65,26 @@ div.round div {
     padding: 2px;
 }
 
-/* .weapon-div-text {
+.footer {
+    display: block;
+    margin-top: auto;
+    font-size: 14px;
+    bottom: 0;
+    justify-content: center;
+    padding-top: 50px;
+    margin-bottom: 15px;
     align-self: center;
-} */
+    align-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+#gh-logo {
+    width: 35px;
+    height: 35px;
+    margin-bottom: -12px;
+    margin-left: 10px;
+}
