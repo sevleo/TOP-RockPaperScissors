@@ -1,3 +1,1 @@
-nodes with class player-choice, computer-choice, results -> should go as 
-children to new node "round". Each round, a new round should be created storing
-the results.
+Background picture credit to stux (https://pixabay.com/photos/black-board-traces-of-chalk-school-1072366/)

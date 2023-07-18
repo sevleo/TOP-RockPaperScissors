@@ -1,4 +1,4 @@
-let beginBtn = document.querySelector('#game-start');
+let beginBtn = document.querySelector('#game-start-btn');
 beginBtn.addEventListener("click", beginMatch);
 
 playerScore = 0;
@@ -16,10 +16,20 @@ scoreComputerNode.textContent = `Computer score is 0.`;
 const matchResultDiv = document.createElement("div");
 matchResultDiv.classList.add("match-result-div");
 
+const roundContainer = document.createElement("div");
+roundContainer.classList.add('round-container');
+
+
 function beginMatch() {
     playerScore = 0;
     computerScore = 0;
     roundNum = 0;
+
+    const headerRulesDiv = document.querySelector(".header-rules");
+    if (headerRulesDiv) {
+        headerRulesDiv.remove();
+    }
+    
 
     const weaponDiv = document.createElement("div");
     weaponDiv.classList.add("weapon");
@@ -27,7 +37,9 @@ function beginMatch() {
     const weaponDivText = document.createElement("div");
     weaponDivText.textContent = "Choose your weapon";
     weaponDivText.classList.add("weapon-div-text");
-    weaponDiv.append(weaponDivText);
+    // weaponDiv.append(weaponDivText);
+    document.body.insertBefore(weaponDivText, weaponDiv);
+
     beginBtn.remove();
 
     divsDelete = document.querySelectorAll('.round');
@@ -51,6 +63,7 @@ function beginMatch() {
     document.body.append(scorePlayerNode);
 
     document.body.append(scoreComputerNode);
+    document.body.append(roundContainer);
 }
 
 
@@ -61,6 +74,7 @@ function handleClick(e) {
 
     const roundDiv = document.createElement("div");
     roundDiv.classList.add(`round`);
+    roundDiv.classList.add(`r${roundNum}`);
 
     const roundTextDiv = document.createElement("div");
     roundTextDiv.classList.add('round-text');
@@ -74,7 +88,17 @@ function handleClick(e) {
     const resultsDiv = document.createElement("div");
     resultsDiv.classList.add("results");
 
-    document.body.append(roundDiv);
+    const previousRoundDiv = document.querySelector(`.r${roundNum-1}`);
+
+  
+    if (previousRoundDiv) {
+        roundContainer.insertBefore(roundDiv, previousRoundDiv);
+    }
+    if (!previousRoundDiv) {
+        roundContainer.append(roundDiv);
+    }
+
+    // document.body.append(roundDiv);
     roundDiv.append(roundTextDiv);
     roundDiv.append(playerChoiceDiv);
     roundDiv.append(computerChoiceDiv);
@@ -89,15 +113,23 @@ function handleClick(e) {
 
 function updateScore() {
     if (playerScore == 2 || computerScore == 2) {
-        document.body.append(matchResultDiv);
+        document.body.insertBefore(matchResultDiv, roundContainer);
         const weaponDiv = document.querySelector('div.weapon');
         weaponDiv.remove();
+        const weaponDivText = document.querySelector('div.weapon-div-text');
+        weaponDivText.remove();
 
         beginBtn = document.createElement('button');
         beginBtn.textContent = 'Begin new match';
-        beginBtn.id = 'game-start';
+        beginBtn.id = 'game-start-btn';
         document.body.insertBefore(beginBtn, scorePlayerNode);
         beginBtn.addEventListener("click", beginMatch);
+        const headerRulesDiv = document.createElement("div");
+        headerRulesDiv.classList.add('header-rules');
+        headerRulesDiv.textContent = 'Win 3 rounds to win the match';
+        document.body.insertBefore(headerRulesDiv, beginBtn);
+        
+
     
         if (playerScore == 2) {
             matchResultDiv.textContent = "Congratulations! You win the match!";
