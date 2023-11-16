@@ -11,7 +11,7 @@ Implementation of the Rock Paper Scissors game. The project demonstrates basic k
 
 - [Demo](#demo)
 - [How to use](#how-to-use)
-- [Technologies used](#technologies)
+- [Technologies](#technologies)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#Acknowledgements)
