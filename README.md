@@ -4,7 +4,7 @@
 Implementation of the Rock Paper Scissors game. The project demonstrates basic knowledge of JavaScript to manipulate the page DOM and to randomize the computer moves.
 
 
-![Home page screenshot](Screenshot 2023-11-16 at 12.47.01 PM.png)
+![Home page screenshot](demo.png)
 
 
 ## Table of Contents
