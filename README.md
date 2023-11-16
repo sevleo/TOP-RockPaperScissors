@@ -10,6 +10,7 @@ Implementation of the Rock Paper Scissors game. The project demonstrates basic k
 ## Table of Contents
 
 - [Demo](#demo)
+- [How to use](#how-to-use)
 - [Technologies used](#technologies)
 - [Contributing](#contributing)
 - [License](#license)
@@ -19,6 +20,11 @@ Implementation of the Rock Paper Scissors game. The project demonstrates basic k
 ## Demo
 
 You can view the project at [Rock Paper Scissors Page Demo](https://sevleo.github.io/rock-paper-scissors/).
+
+
+## How to use
+Click "Begin Match" to start the game. Then, choose the weapon: Rock, Paper, or Scissors. Immediately, the round results will appear under. The game continues until either you or the computer reaches 3 scores.
+
 
 
 ## Technologies
